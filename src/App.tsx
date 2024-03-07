@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Header, Footer } from "./components/pageExports";
 import "./assets/fonts/fonts.css";
 
 import useSound from "use-sound";
@@ -37,21 +38,25 @@ function App() {
 	});
 
 	return (
-		<>
-			<div className="font-sinclair font-bold text-5xl">STRATAGEM HERO</div>
-			<div className="font-sinclair font-medium">
-				<button
-					onClick={() => {
-						setCount((count) => count + 1);
-						setTimeout(() => playGameStart(), 10);
-						playRoundStart();
-					}}
-				>
-					count is {count}
-				</button>
-				<p>Enter any Stratagem Input to Start!</p>
+		<div className="flex flex-col h-screen">
+			<Header />
+			<div className="flex flex-col flex-grow items-center justify-center w-full text-center">
+				<div className="font-sinclair font-bold text-5xl">STRATAGEM HERO</div>
+				<div className="font-sinclair font-medium ">
+					<button
+						onClick={() => {
+							setCount((count) => count + 1);
+							setTimeout(() => playGameStart(), 10);
+							playRoundStart();
+						}}
+					>
+						count is {count}
+					</button>
+					<p className="text-diverYellow">Enter any Stratagem Input to Start!</p>
+				</div>
 			</div>
-		</>
+			<Footer />
+		</div>
 	);
 }
 

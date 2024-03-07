@@ -7,6 +7,9 @@ export default {
 				swiss: ["Swiss 721 Extended", "sans-serif"],
 				sinclair: ["FS Sinclair", "sans-serif"],
 			},
+			colors: {
+				'diverYellow': '#ffe80a',
+			},
 		},
 	},
 	plugins: [],
