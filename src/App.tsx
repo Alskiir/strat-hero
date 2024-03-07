@@ -1,57 +1,40 @@
 import { useState } from "react";
-import './assets/fonts/fonts.css';
+import "./assets/fonts/fonts.css";
 
-import useKeyboardInput from './components/keyboardInput';
-
+import useSound from "use-sound";
 import gameStart from "./assets/sounds/game_start.mp3";
 import roundStart from "./assets/sounds/round_start.mp3";
-import useAudio from "./components/useAudio";
 
-// function playGameStart() {
-// 	const audio1 = new Audio(gameStart);
-//   const audio2 = new Audio(roundStart);
-
-//   audio1.volume = 0.65;
-//   audio2.volume = 0.5;
-
-//   setTimeout(() => {
-//     audio1.play();
-//   }, 10);
-//   audio2.play();
-// }
+import useKeyboardInput from "./components/keyboardInput";
 
 function App() {
 	const [count, setCount] = useState(0);
-  const playGameStart = useAudio(gameStart, 1000, 0.65);
-  const playRoundStart = useAudio(roundStart, 0, 0.5);
 
-  const playStartSounds = () => {
-    playGameStart();
-    playRoundStart();
-  }
+	const [playGameStart] = useSound(gameStart, { volume: 0.55 });
+	const [playRoundStart] = useSound(roundStart, { volume: 0.45 });
 
-  useKeyboardInput((event) => {
-    switch(event.key) {
-      case 'ArrowUp':
-      case 'w':
-        console.log('Up key pressed');
-        break;
-      case 'ArrowDown':
-      case 's':
-        console.log('Down key pressed');
-        break;
-      case 'ArrowLeft':
-      case 'a':
-        console.log('Left key pressed');
-        break;
-      case 'ArrowRight':
-      case 'd':
-        console.log('Right key pressed');
-        break;
-      default:
-        break;
-    }
-  });
+	useKeyboardInput((event) => {
+		switch (event.key) {
+			case "ArrowUp":
+			case "w":
+				console.log("Up key pressed");
+				break;
+			case "ArrowDown":
+			case "s":
+				console.log("Down key pressed");
+				break;
+			case "ArrowLeft":
+			case "a":
+				console.log("Left key pressed");
+				break;
+			case "ArrowRight":
+			case "d":
+				console.log("Right key pressed");
+				break;
+			default:
+				break;
+		}
+	});
 
 	return (
 		<>
@@ -60,14 +43,13 @@ function App() {
 				<button
 					onClick={() => {
 						setCount((count) => count + 1);
-						playStartSounds();
+						setTimeout(() => playGameStart(), 10);
+						playRoundStart();
 					}}
 				>
 					count is {count}
 				</button>
-				<p>
-					Enter any Stratagem Input to Start!
-				</p>
+				<p>Enter any Stratagem Input to Start!</p>
 			</div>
 		</>
 	);
