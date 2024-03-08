@@ -1,4 +1,3 @@
-// @vite-ignore
 import { useEffect } from "react";
 
 function useKeyboardInput(callback: (event: KeyboardEvent) => void) {
