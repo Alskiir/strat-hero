@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Header, Footer } from "./components/pageExports";
+import { Header, Footer } from "./components/marginals/marginalExports";
 import "./assets/fonts/fonts.css";
 
 import useSound from "use-sound";
@@ -11,8 +11,8 @@ import useKeyboardInput from "./components/keyboardInput";
 function App() {
 	const [count, setCount] = useState(0);
 
-	const [playGameStart] = useSound(gameStart, { volume: 0.55 });
-	const [playRoundStart] = useSound(roundStart, { volume: 0.45 });
+	const [playGameStart] = useSound(gameStart, { volume: 0.45 });
+	const [playRoundStart] = useSound(roundStart, { volume: 0.35 });
 
 	useKeyboardInput((event) => {
 		switch (event.key) {
