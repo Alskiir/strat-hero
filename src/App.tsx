@@ -9,19 +9,25 @@ import roundStart from "./assets/sounds/round_start.mp3";
 
 import Keybinds from "./components/keyboard/keybinds";
 
-function App() {
+// Extracted the loading state and data fetching into a custom hook
+function useData() {
 	const [isLoading, setIsLoading] = useState(true);
-
+  
 	useEffect(() => {
-		const loadAllData = async () => {
-			// Load your data here. This is just a placeholder.
-			await new Promise((resolve) => setTimeout(resolve, 2000));
-			setIsLoading(false);
-		};
-
-		loadAllData();
+	  const loadAllData = async () => {
+		// Load your data here. This is just a placeholder.
+		await new Promise((resolve) => setTimeout(resolve, 2000));
+		setIsLoading(false);
+	  };
+  
+	  loadAllData();
 	}, []);
+  
+	return isLoading;
+  }
 
+function App() {
+	const isLoading = useData();
 	const [count, setCount] = useState(0);
 
 	const [playGameStart] = useSound(gameStart, { volume: 0.45 });
