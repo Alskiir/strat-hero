@@ -4,7 +4,7 @@ interface WrapperProps {
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
 	return (
-		<div className="flex flex-col flex-grow items-center justify-center w-full text-center">
+		<div className="flex flex-col items-center justify-center flex-grow w-full text-center">
 			{children}
 		</div>
 	);

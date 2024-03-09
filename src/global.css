@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	color: rgb(229, 231, 235);
+	background-color: #1c2022;
+}

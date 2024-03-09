@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header, Footer } from "./components/marginals/marginalExports";
 import Wrapper from "./components/wrapper";
+// import LoadingSpinner from "./components/loadingSpinner";
 import "./assets/fonts/fonts.css";
 
 import useSound from "use-sound";
@@ -9,22 +10,21 @@ import roundStart from "./assets/sounds/round_start.mp3";
 
 import Keybinds from "./components/keyboard/keybinds";
 
-// Extracted the loading state and data fetching into a custom hook
 function useData() {
 	const [isLoading, setIsLoading] = useState(true);
-  
+
 	useEffect(() => {
-	  const loadAllData = async () => {
-		// Load your data here. This is just a placeholder.
-		await new Promise((resolve) => setTimeout(resolve, 2000));
-		setIsLoading(false);
-	  };
-  
-	  loadAllData();
+		const loadAllData = async () => {
+			// Loading placeholder.
+			await new Promise((resolve) => setTimeout(resolve, 2000));
+			setIsLoading(false);
+		};
+
+		loadAllData();
 	}, []);
-  
+
 	return isLoading;
-  }
+}
 
 function App() {
 	const isLoading = useData();
@@ -45,10 +45,13 @@ function App() {
 			<div className="flex flex-col h-screen">
 				<Header />
 				<Wrapper>
-					<div className="font-sinclair font-bold text-5xl">STRATAGEM HERO</div>
-					<div className="font-sinclair font-medium ">Loading...</div>
+					<div className="text-5xl font-bold font-sinclair">
+						STRATAGEM HERO
+					</div>
+					<div className="font-medium font-sinclair ">Loading...</div>
 					<svg
-						className="animate-spin h-16 w-16"
+						id="LoadingSpinner"
+						className="w-16 h-16 animate-spin"
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
@@ -59,7 +62,7 @@ function App() {
 							cy="12"
 							r="10"
 							stroke="#ffe80a"
-							stroke-width="4"
+							strokeWidth="4"
 						></circle>
 						<path
 							className="opacity-75"
@@ -77,8 +80,10 @@ function App() {
 		<div className="flex flex-col h-screen">
 			<Header />
 			<Wrapper>
-				<div className="font-sinclair font-bold text-5xl">STRATAGEM HERO</div>
-				<div className="font-sinclair font-medium ">
+				<div className="text-5xl font-bold font-sinclair">
+					STRATAGEM HERO
+				</div>
+				<div className="font-medium font-sinclair ">
 					<button
 						onClick={() => {
 							setCount((count) => count + 1);
@@ -92,7 +97,10 @@ function App() {
 						Enter any Stratagem Input to Start!
 					</p>
 				</div>
-				<Keybinds keyBindings={keyBindings} setKeyBindings={setKeyBindings} />
+				<Keybinds
+					keyBindings={keyBindings}
+					setKeyBindings={setKeyBindings}
+				/>
 			</Wrapper>
 			<Footer />
 		</div>
